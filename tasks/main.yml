@@ -1,2 +1,10 @@
 ---
-# tasks file for ansible-role-btcpool
+# tasks file for ansible-role-docker-airflow
+
+- include: docker.yml
+  when: install_docker
+
+- include: ssl.yml
+  when: ssl_enable
+
+- include: btcpool.yml
