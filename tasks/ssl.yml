@@ -16,10 +16,27 @@
     src: nginx.conf.j2
     dest: /etc/nginx/nginx.conf
 
-- name: Copy over airflow nginx conf for SSL
+- name: Copy over btcpool nginx conf for SSL
   template:
-    src: airflow.conf.j2
-    dest: /etc/nginx/sites-enabled/airflow.conf
+    src: btcpool.conf.j2
+    dest: /etc/nginx/sites-enabled/btcpool.conf
   notify:
     - restart nginx
+
+- name: Create cert directory if it does not exist
+  file:
+    path: "/home/{{ username }}/btcpool/certs"
+    state: directory
+    mode: '0600'
+    owner: "{{ username }}"
+    group: "{{ group_name }}"
+  when: ssl_enable
+
+- name: Move cert to certs
+  command: cp /etc/letsencrypt/live/{{ fqdn }}/fullchain.pem /home/{{ username }}/btcpool/certs/fullchain.pem
+  when: ssl_enable
+
+- name: Move key to certs
+  command: cp /etc/letsencrypt/live/{{ fqdn }}/privkey.pem /home/{{ username }}/btcpool/certs/privkey.pem
+  when: ssl_enable
 

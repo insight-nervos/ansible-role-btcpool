@@ -4,7 +4,7 @@
 - include: docker.yml
   when: install_docker
 
+- include: btcpool.yml
+
 - include: ssl.yml
   when: ssl_enable
-
-- include: btcpool.yml

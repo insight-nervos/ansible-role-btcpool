@@ -7,32 +7,12 @@
 
 - name: Clone btcpool-docker-compose repo
   git:
-    repo: "https://github.com/insight-infrastructure/btcpool-docker-compose"
+    repo: "https://github.com/insight-stratum/btcpool-docker-compose"
     dest: "/home/{{ username }}/btcpool"
   become_user: "{{ username }}"
   when: btcpool_git.stat.exists == false
 
-- name: Create cert directory if it does not exist
-  file:
-    path: "/home/{{ username }}/btcpool/certs"
-    state: directory
-    mode: '0600'
-    owner: "{{ username }}"
-    group: "{{ group_name }}"
-
-- name: Move cert to certs
-  command: cp /etc/letsencrypt/live/{{ fqdn }}/fullchain.pem /home/{{ username }}/btcpool/certs/fullchain.pem
-  when: ssl_enable
-
-- name: Move key to certs
-  command: cp /etc/letsencrypt/live/{{ fqdn }}/privkey.pem /home/{{ username }}/btcpool/certs/privkey.pem
-  when: ssl_enable
-
-- name: Rename override file per the type of btcpool deployment (ie worker)
-  command: mv /home/{{ username }}/btcpool/docker-compose.worker.override /home/{{ username }}/btcpool/docker-compose.override
-  when: btcpool_node_type == 'worker'
-
 - name: Start node application via docker-compose
   shell:
-    cmd: docker-compose up -d
+    cmd: make start
     chdir: "/home/{{ username }}/btcpool"
