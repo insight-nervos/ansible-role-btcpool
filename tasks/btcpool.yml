@@ -14,5 +14,5 @@
 
 - name: Start node application via docker-compose
   shell:
-    cmd: make start
+    cmd: "STACK={{ stack_type }} make start"
     chdir: "/home/{{ username }}/btcpool"

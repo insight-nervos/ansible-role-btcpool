@@ -4,10 +4,10 @@
 username: ubuntu
 group_name: ubuntu
 
+stack_type: prometheus-server
+
 btcpool_node_type: main
-
 ssl_enable: false
-
 install_docker: true
-
 env_file_path: ""
+
