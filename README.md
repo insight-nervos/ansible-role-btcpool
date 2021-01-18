@@ -27,14 +27,14 @@ Example Playbook
 `requirements.yaml` -> `ansible-galaxy install -r requirements.yml`
 ```yaml
 roles:
-  - src: insight_stratum.btcpool
+  - src: insight_nervos.btcpool
 ```
 
 Playbook:
 ```yaml
 - hosts: all
   roles:
-    - insight_stratum.btcpool
+    - insight_nervos.btcpool
 ```
 
 License

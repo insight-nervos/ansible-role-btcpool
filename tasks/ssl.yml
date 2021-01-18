@@ -15,11 +15,13 @@
   template:
     src: nginx.conf.j2
     dest: /etc/nginx/nginx.conf
+    mode: 0644
 
 - name: Copy over btcpool nginx conf for SSL
   template:
     src: btcpool.conf.j2
     dest: /etc/nginx/sites-enabled/btcpool.conf
+    mode: 0644
   notify:
     - restart nginx
 
