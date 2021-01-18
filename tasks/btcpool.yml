@@ -15,5 +15,5 @@
 
 - name: Start node application via docker-compose
   shell: # noqa 301 305
-    cmd: "STACK={{ stack_type }} make start"
+    cmd: "STACK={{ stack_type }} make start > startup.log"
     chdir: "/home/{{ username }}/btcpool"

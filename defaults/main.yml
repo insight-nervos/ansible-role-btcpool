@@ -4,7 +4,7 @@
 username: ubuntu
 group_name: ubuntu
 
-stack_type: prometheus-server
+stack_type: prometheus
 
 btcpool_node_type: main
 ssl_enable: false
