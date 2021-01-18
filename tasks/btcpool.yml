@@ -17,3 +17,5 @@
   shell: # noqa 301 305
     cmd: "STACK={{ stack_type }} make start > startup.log"
     chdir: "/home/{{ username }}/btcpool"
+  async: 60
+  poll: 60
